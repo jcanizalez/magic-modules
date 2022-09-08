@@ -391,6 +391,7 @@ objects:
     base_url: "projects/{{project}}/conversationProfiles/"
     self_link: "{{name}}"
     update_verb: :PATCH
+    update_mask: true
     description: |
       Defines the services to connect to incoming Dialogflow conversations.
     references: !ruby/object:Api::Resource::ReferenceLinks
