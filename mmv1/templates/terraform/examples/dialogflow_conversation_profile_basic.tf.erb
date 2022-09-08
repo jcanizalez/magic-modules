@@ -1,0 +1,21 @@
+resource "google_dialogflow_agent" "basic_agent" {
+  display_name = "example_agent"
+  default_language_code = "en"
+  time_zone = "America/New_York"
+}
+
+resource "google_dialogflow_conversation_profile" "<%= ctx[:primary_resource_id] %>" {
+  depends_on = [google_dialogflow_agent.basic_agent]
+  display_name = "<%= ctx[:vars]["profile_name"] %>"
+
+  automated_agent_config {
+    agent = "-"
+  }
+
+  human_assistant_config {
+    message_analysis_config {
+        enable_entity_extraction  = true
+        enable_sentiment_analysis = true
+    }
+  }
+}
